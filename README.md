@@ -1,5 +1,7 @@
 # dcgan_animface
 
+book 실전GAN프로젝트 04장 기반으로 시작
+
 1. python3 -m pip install --upgrade gallery-dl 설치후 
    gallery-dl https://danbooru.donmai.us/posts?tags=face
    -> 한참후 보니 danbooru에서 900여개 받고 timeout
