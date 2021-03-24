@@ -1,0 +1,36 @@
+
+book 실전GAN프로젝트 04장 기반으로 시작
+kaggle Anime Face Dataset / DCGAN 투토리얼 코드 pytorch 로 테스트
+
+1. python3 -m pip install --upgrade gallery-dl 설치후 
+   gallery-dl https://danbooru.donmai.us/posts?tags=face
+   -> 한참후 보니 danbooru에서 900여개 받고 timeout
+
+2. face crop 위해 animface 설치 하려 했으나 -make error
+   인터넷에서 찾아 cv 이용 face detect  하려 햇으나 animation face detect 는 잘 안됨
+
+ -> 대신가능할 것 같은 것 찾은 것  AnimeHeadDetector  : https://github.com/grapeot/AnimeHeadDetector
+
+3. 깃허브에서 animeface 여러 모델들로 된 코드 발견
+https://github.com/STomoya/animeface
+여기에서 사용된 dataset 들도 있음
+1) kaggle Anime Face Dataset 63.6k (394MB) -> 다운 완료
+ - Mckinsey666 dataset scraped from www.getchu.com
+ https://www.kaggle.com/splcher/animefacedataset 
+2) moeimouto face images. 17.4K (564MB) -> 다운 완료
+ http://www.nurs.or.jp/~nagadomi/animeface-character-dataset/
+3) Danbooru2019 Portraits 302K (16GB)
+ https://www.gwern.net/Crops#danbooru2019-portraits 
+
+4. kaggle Anime Face Dataset / DCGAN 투토리얼 코드 pytorch 로 테스트
+ https://www.kaggle.com/splcher/starter-anime-face-dataset
+ * base pytorch dcgan tutorial
+  https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html
+
+시험결과 어느정도 잘 생성됨 ( fake_65_32345_images.png, fake_final_epoch100_images.png 확인)
+1080 ti 1 GPU 에서 epoch당 55초정도 소요
+
+
+[판별]
+D (x)-모든 실제 배치에 대한 판별 자의 평균 출력 (배치 전체)입니다. 이것은 1에 가깝게 시작하고 이론적으로 G가 나아지면 0.5로 수렴해야합니다.
+D (G (z))-모든 가짜 배치에 대한 평균 판별 기 출력. 첫 번째 숫자는 D가 업데이트되기 전이고 두 번째 숫자는 D가 업데이트 된 후입니다. 이 숫자는 0 근처에서 시작하여 G가 좋아짐에 따라 0.5로 수렴해야합니다. 
